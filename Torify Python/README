@@ -1,0 +1,22 @@
+# Torify Python Sockets
+
+This script will route traffic created using python sockets through the Tor SOCKS proxy.
+
+Use:
+
+```
+	import torify
+	# That's it!
+```
+
+This code transparently replaces a low level Python function for creating sockets.
+
+If you'd like to use normal sockets at the same time as these SOCKS-encapsulated ones, use:
+
+```
+	import socket as old_homestyle_socket	#Import the library as a different symbol! (
+	import torify				#Import the modified module in place of the normal one
+
+	normal_socket = old_homestyle_socket()		#Normal socket object
+	new_SOCKS_socket = socket()			#SOCKS-secured socket object
+```
