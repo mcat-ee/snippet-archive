@@ -1,0 +1,20 @@
+/*
+  Long story short, the Facebook API doesn't have a method for getting saved links out of the system. This dodges that.
+  This script will run every second after the function is called and will change each saved link element on the 'saved links' page into just the saved links.
+  
+  TODO: Remove the annoying facebook.com referral prefix
+
+*/
+
+function checkDOMChange()
+{
+	var elements = document.getElementsByClassName('_24-s');
+	for(var i = 0 ; i < elements.length ;i++) {
+		var oldElement = elements[i];
+    	var oldElementParent = elements[i].parentNode.parentNode.parentNode.parentNode.parentNode;
+    	var newElement = document.createElement('div');
+    	newElement.innerHTML = oldElement.href;
+    	oldElementParent.parentNode.replaceChild(newElement, oldElementParent);
+	}
+    setTimeout( checkDOMChange, 1000 );
+}
